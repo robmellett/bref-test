@@ -1,0 +1,65 @@
+service: bref-test
+useDotenv: true
+
+provider:
+  name: aws
+  # The AWS region in which to deploy (us-east-1 is the default)
+  region: ap-southeast-2
+  # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
+  stage: production
+  runtime: provided.al2
+  environment:
+    APP_ENV: production
+    APP_URL: https://bref-test.robmellett.dev
+    APP_DEBUG: ${ssm:APP_DEBUG}
+    APP_KEY: ${ssm:APP_KEY}
+    SENTRY_LARAVEL_DSN: ${ssm:SENTRY_LARAVEL_DSN}
+    FILESYSTEM_DRIVER: ${ssm:FILESYSTEM_DRIVER}
+    MAIL_MAILER: ${ssm:MAIL_MAILER}
+    MAILGUN_DOMAIN: ${ssm:MAILGUN_DOMAIN}
+    MAILGUN_SECRET: ${ssm:MAILGUN_SECRET}
+    MAIL_FROM_ADDRESS: ${ssm:MAIL_FROM_ADDRESS}
+    MAIL_FROM_NAME: ${ssm:MAIL_FROM_NAME}
+    MAIL_TO_ADDRESS: ${ssm:MAIL_TO_ADDRESS}
+
+package:
+  # Directories to exclude from deployment
+  exclude:
+    - node_modules/**
+    - public/storage
+    - resources/assets/**
+    - storage/**
+    - tests/**
+
+functions:
+  # This function runs the Laravel website/API
+  web:
+    handler: public/index.php
+    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      -   httpApi: '*'
+  # This function lets us run artisan commands in Lambda
+  artisan:
+    handler: artisan
+    timeout: 120 # in seconds
+    layers:
+      - ${bref:layer.php-74} # PHP
+      - ${bref:layer.console} # The "console" layer
+
+plugins:
+  # We need to include the Bref plugin
+  - ./vendor/bref/bref
+  # - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: bref-test.robmellett.dev
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: false
+    endpointType: 'regional'
+    securityPolicy: tls_1_2
+    apiType: http
+    region: ${self:provider.region}
