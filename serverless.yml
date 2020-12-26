@@ -1,4 +1,4 @@
-service: bref-test
+service: bref
 useDotenv: true
 
 provider:
@@ -6,21 +6,13 @@ provider:
   # The AWS region in which to deploy (us-east-1 is the default)
   region: ap-southeast-2
   # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
-  stage: production
+  stage: dev
   runtime: provided.al2
   environment:
     APP_ENV: production
     APP_URL: https://bref-test.robmellett.dev
-    APP_DEBUG: ${ssm:APP_DEBUG}
+    APP_DEBUG: false
     APP_KEY: ${ssm:APP_KEY}
-    SENTRY_LARAVEL_DSN: ${ssm:SENTRY_LARAVEL_DSN}
-    FILESYSTEM_DRIVER: ${ssm:FILESYSTEM_DRIVER}
-    MAIL_MAILER: ${ssm:MAIL_MAILER}
-    MAILGUN_DOMAIN: ${ssm:MAILGUN_DOMAIN}
-    MAILGUN_SECRET: ${ssm:MAILGUN_SECRET}
-    MAIL_FROM_ADDRESS: ${ssm:MAIL_FROM_ADDRESS}
-    MAIL_FROM_NAME: ${ssm:MAIL_FROM_NAME}
-    MAIL_TO_ADDRESS: ${ssm:MAIL_TO_ADDRESS}
 
 package:
   # Directories to exclude from deployment
@@ -51,7 +43,7 @@ functions:
 plugins:
   # We need to include the Bref plugin
   - ./vendor/bref/bref
-  # - serverless-domain-manager
+  - serverless-domain-manager
 
 custom:
   customDomain:
