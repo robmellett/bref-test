@@ -12,7 +12,7 @@ provider:
     APP_ENV: production
     APP_URL: https://bref-test.robmellett.dev
     APP_DEBUG: false
-    APP_KEY: ${ssm:APP_KEY}
+    APP_KEY: ${ssm:/bref-dev/APP_KEY}
 
 package:
   # Directories to exclude from deployment
