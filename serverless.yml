@@ -9,10 +9,13 @@ provider:
   stage: dev
   runtime: provided.al2
   environment:
+    APP_NAME: 'Bref Demo'
     APP_ENV: production
-    APP_URL: https://bref-test.robmellett.dev
-    APP_DEBUG: false
     APP_KEY: ${ssm:/bref-dev/APP_KEY}
+    APP_DEBUG: false
+    APP_URL: ${ssm:/bref-dev/APP_URL}
+    LOG_CHANNEL: stderr
+    FILESYSTEM_DRIVER: s3
 
 package:
   # Directories to exclude from deployment
