@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('test:queue')->everyMinute();
+        // Reenable this job to test the scheduler.
+        // $schedule->command('test:queue')->everyMinute();
     }
 
     /**
