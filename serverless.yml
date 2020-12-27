@@ -56,7 +56,7 @@ functions:
     layers:
       - ${bref:layer.php-74} # PHP
       - ${bref:layer.console} # The "console" layer
-
+  # This function lets us run the SQS Queue
   worker:
     handler: worker.php
     layers:
@@ -69,6 +69,16 @@ functions:
           # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
           # Only 1 item at a time to simplify error handling
           batchSize: 1
+
+  schedule:
+    handler: artisan
+    layers:
+      - ${bref:layer.php-74} # PHP runtime
+      - ${bref:layer.console} # Console layer
+    events:
+      - schedule:
+          schedule: cron(* * * * ()
+          input: '"schedule:run"'
 
 resources:
   Resources:
