@@ -18,6 +18,12 @@ provider:
     FILESYSTEM_DRIVER: s3
     SQS_QUEUE: !Ref AlertQueue
     QUEUE_CONNECTION: sqs
+    MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}
+    MAILGUN_DOMAIN: ${ssm:/bref-dev/MAILGUN_DOMAIN}
+    MAILGUN_SECRET: ${ssm:/bref-dev/MAILGUN_SECRET}
+    MAIL_FROM_ADDRESS: ${ssm:/bref-dev/MAIL_FROM_ADDRESS}
+    MAIL_FROM_NAME: ${ssm:/bref-dev/MAIL_FROM_NAME}
+    MAIL_TO_ADDRESS: ${ssm:/bref-dev/MAIL_TO_ADDRESS}
 
   iamRoleStatements:
     # Allows our code to interact with SQS
