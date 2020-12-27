@@ -1,4 +1,4 @@
-shell
+#!/usr/bin/env bash
 
 aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/APP_KEY' --type String --value '${{ secrets.APP_KEY }}'
 

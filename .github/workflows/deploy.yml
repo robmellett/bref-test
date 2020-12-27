@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -19,13 +20,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
+
       - uses: shivammathur/setup-php@v2
         with:
           php-version: "7.4"
+
       - uses: "ramsey/composer-install@v1"
         with:
           composer-options: "--prefer-dist --optimize-autoloader --no-dev"
       - run: composer require bref/bref
+
       - name: serverless deploy
         uses: serverless/github-action@master
         with:
