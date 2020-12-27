@@ -68,7 +68,7 @@ functions:
           # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
           # Only 1 item at a time to simplify error handling
           batchSize: 1
-
+  # This is the function that lets us the the Schedule
   schedule:
     handler: artisan
     layers:
@@ -76,8 +76,8 @@ functions:
       - ${bref:layer.console} # Console layer
     events:
       - schedule:
-          schedule: rate(1 minute)
-          input: '"schedule:run"'
+          rate: rate(1 hour)
+          input: '"list --verbose"'
 
 resources:
   Resources:
