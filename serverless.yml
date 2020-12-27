@@ -77,7 +77,7 @@ functions:
       - ${bref:layer.console} # Console layer
     events:
       - schedule:
-          schedule: cron(* * * * ()
+          schedule: cron(* * * * *)
           input: '"schedule:run"'
 
 resources:
