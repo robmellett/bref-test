@@ -76,8 +76,8 @@ functions:
       - ${bref:layer.console} # Console layer
     events:
       - schedule:
-          rate: rate(1 hour)
-          input: '"list --verbose"'
+          rate: rate(1 minute)
+          input: '"schedule:run"'
 
 resources:
   Resources:
