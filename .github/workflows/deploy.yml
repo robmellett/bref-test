@@ -30,7 +30,7 @@ jobs:
           composer-options: "--prefer-dist --optimize-autoloader --no-dev"
       - run: composer require bref/bref
 
-      - name: serverless deploy
+      - name: Serverless Deploy
         uses: serverless/github-action@master
         with:
           args: deploy
