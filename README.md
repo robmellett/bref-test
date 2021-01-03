@@ -18,3 +18,11 @@ Set the env variable:
 
 Dispatch the test job with the following command.  If all is well, you will receive an email.
 `AWS_DEFAULT_REGION=ap-southeast-2 bref cli bref-dev-artisan -- test:queue`
+
+## Adding new env variables
+`aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/my-parameter' --type String --value 'mysecretvalue'`
+
+
+## Configuring Assets
+`aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/MIX_ASSET_URL' --type String --value '"https://<bucket-name>.s3.amazonaws.com'"`
+
