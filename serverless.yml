@@ -2,8 +2,10 @@ service: bref
 
 provider:
   name: aws
+
   # The AWS region in which to deploy (us-east-1 is the default)
   region: ap-southeast-2
+
   # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
   stage: dev
   runtime: provided.al2
