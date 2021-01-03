@@ -26,3 +26,10 @@ Dispatch the test job with the following command.  If all is well, you will rece
 ## Configuring Assets
 `aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/MIX_ASSET_URL' --type String --value '"https://<bucket-name>.s3.amazonaws.com'"`
 
+## Make sure the following variables are set within Github Action Secrets.
+```dotenv
+AWS_ACCESS_KEY_ID=
+AWS_DEFAULT_REGION=
+AWS_PUBLIC_BUCKET=
+AWS_SECRET_ACCESS_KEY=
+```
