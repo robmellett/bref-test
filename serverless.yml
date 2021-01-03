@@ -24,7 +24,17 @@ provider:
     MAIL_FROM_NAME: ${ssm:/bref-dev/MAIL_FROM_NAME}
     MAIL_TO_ADDRESS: ${ssm:/bref-dev/MAIL_TO_ADDRESS}
 
+    AWS_BUCKET: # environment variable for Laravel
+      Ref: Storage
+
   iamRoleStatements:
+    # Allow Lambda to read and write files in the S3 buckets
+    - Effect: Allow
+      Action: s3:*
+      Resource:
+        - Fn::GetAtt: Storage.Arn # the storage bucket
+        - Fn::Join: [ '', [ Fn::GetAtt: Storage.Arn, '/*' ] ] # everything in
+
     # Allows our code to interact with SQS
     - Effect: Allow
       Action: [ sqs:SendMessage, sqs:DeleteMessage ]
@@ -48,6 +58,7 @@ functions:
       - ${bref:layer.php-74-fpm}
     events:
       -   httpApi: '*'
+
   # This function lets us run artisan commands in Lambda
   artisan:
     handler: artisan
@@ -55,6 +66,7 @@ functions:
     layers:
       - ${bref:layer.php-74} # PHP
       - ${bref:layer.console} # The "console" layer
+
   # This function lets us run the SQS Queue
   worker:
     handler: worker.php
@@ -68,6 +80,7 @@ functions:
           # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
           # Only 1 item at a time to simplify error handling
           batchSize: 1
+
   # This is the function that lets us the the Schedule
   schedule:
     handler: artisan
@@ -81,6 +94,10 @@ functions:
 
 resources:
   Resources:
+    # Public S3 Bucket for Resources
+    Storage:
+      Type: AWS::S3::Bucket
+
     # The SQS queue
     AlertQueue:
       Type: AWS::SQS::Queue
