@@ -15,6 +15,7 @@ provider:
     APP_URL: ${ssm:/bref-dev/APP_URL}
     LOG_CHANNEL: stderr
     FILESYSTEM_DRIVER: s3
+    AWS_PUBLIC_BUCKET: ${{ secrets.AWS_PUBLIC_BUCKET }}
     SQS_QUEUE: !Ref AlertQueue
     QUEUE_CONNECTION: sqs
     MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}

@@ -45,5 +45,5 @@ jobs:
           AWS_DEFAULT_REGION:  ${{ secrets.AWS_DEFAULT_REGION }}
           AWS_PUBLIC_BUCKET: ${{ secrets.AWS_PUBLIC_BUCKET }}
         run: |
-#          ./vendor/bin/bref cli bref-dev-artisan -- migrate --force
           aws s3 sync public/ s3://${{ secrets.AWS_PUBLIC_BUCKET }} --delete --exclude index.php
+          # ./vendor/bin/bref cli bref-dev-artisan -- migrate --force
