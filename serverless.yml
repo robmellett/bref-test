@@ -26,7 +26,7 @@ provider:
     MAIL_FROM_ADDRESS: ${ssm:/bref-dev/MAIL_FROM_ADDRESS}
     MAIL_FROM_NAME: ${ssm:/bref-dev/MAIL_FROM_NAME}
     MAIL_TO_ADDRESS: ${ssm:/bref-dev/MAIL_TO_ADDRESS}
-    MIX_ASSET_URL: ${ssm:/ecommerce-api/MIX_ASSET_URL}
+    MIX_ASSET_URL: ${ssm:/bref-dev/MIX_ASSET_URL}
 
     AWS_BUCKET: # environment variable for Laravel
       Ref: Storage
