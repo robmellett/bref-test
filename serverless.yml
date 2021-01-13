@@ -34,10 +34,10 @@ provider:
   iamRoleStatements:
     # Allow Lambda to read and write files in the S3 buckets
     - Effect: Allow
-      Action: s3:*
-      Resource:
-        - Fn::GetAtt: Storage.Arn # the storage bucket
-        - Fn::Join: [ '', [ Fn::GetAtt: Storage.Arn, '/*' ] ] # everything in
+      # Action: s3:*
+      Action:
+        - 's3:*'
+      Resource: '*'
 
     # Allows our code to interact with SQS
     - Effect: Allow
