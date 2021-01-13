@@ -1,5 +1,10 @@
 service: bref
 
+plugins:
+  # We need to include the Bref plugin
+  - ./vendor/bref/bref
+  - serverless-domain-manager
+
 provider:
   name: aws
 
@@ -20,6 +25,13 @@ provider:
     AWS_PUBLIC_BUCKET: ${{ secrets.AWS_PUBLIC_BUCKET }}
     SQS_QUEUE: !Ref AlertQueue
     QUEUE_CONNECTION: sqs
+    DB_CONNECTION: ${ssm:/bref-dev/DB_CONNECTION}
+    DB_HOST: ${ssm:/bref-dev/DB_HOST}
+    DB_PORT: ${ssm:/bref-dev/DB_PORT}
+    DB_DATABASE: ${ssm:/bref-dev/DB_DATABASE}
+    DB_USERNAME: ${ssm:/bref-dev/DB_USERNAME}
+    DB_PASSWORD: ${ssm:/bref-dev/DB_PASSWORD}
+    SENTRY_LARAVEL_DSN: ${ssm:/bref-dev/SENTRY_LARAVEL_DSN}
     MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}
     MAILGUN_DOMAIN: ${ssm:/bref-dev/MAILGUN_DOMAIN}
     MAILGUN_SECRET: ${ssm:/bref-dev/MAILGUN_SECRET}
@@ -62,6 +74,13 @@ functions:
       - ${bref:layer.php-74-fpm}
     events:
       -   httpApi: '*'
+    vpc:
+      securityGroupIds:
+        - sg-03d964839c61e634c
+      subnetIds:
+        - subnet-0b68131a82dae1acf
+        - subnet-07a148de15a9f7aa2
+        - subnet-0ff0282386c836949
 
   # This function lets us run artisan commands in Lambda
   artisan:
@@ -70,6 +89,13 @@ functions:
     layers:
       - ${bref:layer.php-74} # PHP
       - ${bref:layer.console} # The "console" layer
+    vpc:
+      securityGroupIds:
+        - sg-03d964839c61e634c
+      subnetIds:
+        - subnet-0b68131a82dae1acf
+        - subnet-07a148de15a9f7aa2
+        - subnet-0ff0282386c836949
 
   # This function lets us run the SQS Queue
   worker:
@@ -84,6 +110,13 @@ functions:
           # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
           # Only 1 item at a time to simplify error handling
           batchSize: 1
+    vpc:
+      securityGroupIds:
+        - sg-03d964839c61e634c
+      subnetIds:
+        - subnet-0b68131a82dae1acf
+        - subnet-07a148de15a9f7aa2
+        - subnet-0ff0282386c836949
 
   # This is the function that lets us the the Schedule
   schedule:
@@ -116,11 +149,6 @@ resources:
       Type: AWS::SQS::Queue
       Properties:
         MessageRetentionPeriod: 1209600 # maximum retention: 14 days
-
-plugins:
-  # We need to include the Bref plugin
-  - ./vendor/bref/bref
-  - serverless-domain-manager
 
 custom:
   customDomain:
