@@ -29,7 +29,7 @@ Dispatch the test job with the following command.  If all is well, you will rece
 ## Make sure the following variables are set within Github Action Secrets.
 ```dotenv
 AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=
 AWS_PUBLIC_BUCKET=
-AWS_SECRET_ACCESS_KEY=
 ```
