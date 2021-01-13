@@ -20,7 +20,7 @@ Dispatch the test job with the following command.  If all is well, you will rece
 `AWS_DEFAULT_REGION=ap-southeast-2 bref cli bref-dev-artisan -- test:queue`
 
 ### Testing the database
-If you are using Postgres, make sure to copy the `php/php.ini` file.
+If you are using Postgres, make sure to copy the `php/conf.d/php.ini` file.
 
 ## Adding new env variables
 `aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/my-parameter' --type String --value 'mysecretvalue'`
