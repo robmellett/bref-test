@@ -129,6 +129,13 @@ functions:
       - schedule:
           rate: rate(1 minute)
           input: '"schedule:run"'
+    vpc:
+      securityGroupIds:
+        - sg-03d964839c61e634c
+      subnetIds:
+        - subnet-0b68131a82dae1acf
+        - subnet-07a148de15a9f7aa2
+        - subnet-0ff0282386c836949
 
 resources:
   Resources:
