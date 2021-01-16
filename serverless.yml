@@ -46,7 +46,6 @@ provider:
   iamRoleStatements:
     # Allow Lambda to read and write files in the S3 buckets
     - Effect: Allow
-      # Action: s3:*
       Action:
         - 's3:*'
       Resource:
