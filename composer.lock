@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e5425e34722e67d1cbb61dcdfa4ce6e",
+    "content-hash": "8e5ab1fbbe835c1f778e8b8285a84957",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -64,16 +64,16 @@
         },
         {
             "name": "async-aws/core",
-            "version": "1.7.2",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/async-aws/core.git",
-                "reference": "4476e81cfc80f82edb7c98ec3d44c14a1fcaea70"
+                "reference": "79be58b857fba7c77dedf639a311c5e1554308cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/async-aws/core/zipball/4476e81cfc80f82edb7c98ec3d44c14a1fcaea70",
-                "reference": "4476e81cfc80f82edb7c98ec3d44c14a1fcaea70",
+                "url": "https://api.github.com/repos/async-aws/core/zipball/79be58b857fba7c77dedf639a311c5e1554308cf",
+                "reference": "79be58b857fba7c77dedf639a311c5e1554308cf",
                 "shasum": ""
             },
             "require": {
@@ -115,7 +115,7 @@
                 "sts"
             ],
             "support": {
-                "source": "https://github.com/async-aws/core/tree/1.7.2"
+                "source": "https://github.com/async-aws/core/tree/1.8.0"
             },
             "funding": [
                 {
@@ -127,20 +127,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-22T08:22:55+00:00"
+            "time": "2021-01-16T12:29:20+00:00"
         },
         {
             "name": "async-aws/lambda",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/async-aws/lambda.git",
-                "reference": "07fb25c18511a7dd9590d2b4311a16f13ebef3f7"
+                "reference": "55781f476fa0b475a2dc4bf599703f9492c8019e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/async-aws/lambda/zipball/07fb25c18511a7dd9590d2b4311a16f13ebef3f7",
-                "reference": "07fb25c18511a7dd9590d2b4311a16f13ebef3f7",
+                "url": "https://api.github.com/repos/async-aws/lambda/zipball/55781f476fa0b475a2dc4bf599703f9492c8019e",
+                "reference": "55781f476fa0b475a2dc4bf599703f9492c8019e",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "sdk"
             ],
             "support": {
-                "source": "https://github.com/async-aws/lambda/tree/1.1.1"
+                "source": "https://github.com/async-aws/lambda/tree/1.2.0"
             },
             "funding": [
                 {
@@ -184,7 +184,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-21T10:41:37+00:00"
+            "time": "2021-01-16T12:14:42+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
