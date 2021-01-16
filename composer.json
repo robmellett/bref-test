@@ -16,7 +16,7 @@
         "guzzlehttp/guzzle": "7.2.0",
         "laravel/framework": "8.20.1",
         "laravel/tinker": "2.5.0",
-        "league/flysystem-aws-s3-v3": "~1.0"
+        "league/flysystem-aws-s3-v3": "1.0.29"
     },
     "require-dev": {
         "facade/ignition": "2.5.3",
