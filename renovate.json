@@ -1,5 +1,14 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "automerge": true,
+  "major": {
+      "automerge": false
+  },
+  "labels": ["type: dependencies", "renovate"],
+  "masterIssue": true,
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "timezone": "Australia/melbourne",
+  "schedule": ["every weekend"],
+  "reviewers": ["26024074+robmellett@users.noreply.github.com"]
 }
