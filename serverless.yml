@@ -31,6 +31,7 @@ provider:
     DB_DATABASE: ${ssm:/bref-dev/DB_DATABASE}
     DB_USERNAME: ${ssm:/bref-dev/DB_USERNAME}
     DB_PASSWORD: ${ssm:/bref-dev/DB_PASSWORD}
+    DYNAMODB_TABLE: bref-dev
     SENTRY_LARAVEL_DSN: ${ssm:/bref-dev/SENTRY_LARAVEL_DSN}
     MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}
     MAILGUN_DOMAIN: ${ssm:/bref-dev/MAILGUN_DOMAIN}
@@ -51,6 +52,12 @@ provider:
       Resource:
         - Fn::GetAtt: [ Storage, Arn ]  # the storage bucket
         - Fn::Join: [ '', [ Fn::GetAtt: [ Storage, Arn ], '/*' ] ]
+
+    # Allow Lambda to read and writein the DynamoDB
+    - Effect: "Allow"
+      Action:
+        - 'dynamodb:*'
+      Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
     # Allows our code to interact with SQS
     - Effect: Allow
@@ -74,7 +81,7 @@ functions:
     layers:
       - ${bref:layer.php-74-fpm}
     events:
-      -   httpApi: '*'
+      - httpApi: '*'
     vpc:
       securityGroupIds:
         - sg-03d964839c61e634c
@@ -153,6 +160,20 @@ resources:
               Principal: '*' # everyone
               Action: 's3:GetObject' # to read
               Resource: !Join [ '/', [ !GetAtt Storage.Arn, '*' ] ] # things in the bucket
+
+    cacheTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: cache
+            AttributeType: S
+        KeySchema:
+          - AttributeName: cache
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 
     # The SQS queue
     AlertQueue:
