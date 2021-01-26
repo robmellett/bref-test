@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('cache', function () {
+    $cached = Cache::remember('cache-test', 10, function () {
+        return Carbon::now();
+    });
+
+    return response()->json([
+        "cached" =>  $cached->diffForHumans(),
+        "now" => Carbon::now()->diffForHumans()
+    ]);
 });

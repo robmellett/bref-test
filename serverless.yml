@@ -31,6 +31,7 @@ provider:
     DB_DATABASE: ${ssm:/bref-dev/DB_DATABASE}
     DB_USERNAME: ${ssm:/bref-dev/DB_USERNAME}
     DB_PASSWORD: ${ssm:/bref-dev/DB_PASSWORD}
+    CACHE_DRIVER: dynamodb
     DYNAMODB_CACHE_TABLE: bref-dev
     SENTRY_LARAVEL_DSN: ${ssm:/bref-dev/SENTRY_LARAVEL_DSN}
     MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}
