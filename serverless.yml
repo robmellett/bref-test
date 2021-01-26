@@ -55,12 +55,14 @@ provider:
         - Fn::GetAtt: [ Storage, Arn ]  # the storage bucket
         - Fn::Join: [ '', [ Fn::GetAtt: [ Storage, Arn ], '/*' ] ]
 
-    # Allow Lambda to read and writein the DynamoDB
-    - Effect: "Allow"
+    # Allow Lambda to read and write to the DynamoDB
+    - Effect: Allow
       Action:
         - 'dynamodb:*'
-      Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DYNAMODB_CACHE_TABLE}"
-
+      Resource:
+        - Fn::GetAtt: [ Cache, Arn ]  # the dynamo db
+        - Fn::Join: [ '', [ Fn::GetAtt: [ Cache, Arn ], '/*' ] ]
+        
     # Allows our code to interact with SQS
     - Effect: Allow
       Action: [ sqs:SendMessage, sqs:DeleteMessage ]
