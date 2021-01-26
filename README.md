@@ -22,6 +22,9 @@ Dispatch the test job with the following command.  If all is well, you will rece
 ### Testing the database
 If you are using Postgres, make sure to copy the `php/conf.d/php.ini` file.
 
+## Testing the Cache Driver
+View the `/cache` route, and you should see the current server time.  Refresh a few seconds later and `cached` variable should be in the past.
+
 ## Adding new env variables
 `aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/my-parameter' --type String --value 'mysecretvalue'`
 
