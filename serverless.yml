@@ -33,6 +33,7 @@ provider:
     DB_PASSWORD: ${ssm:/bref-dev/DB_PASSWORD}
     CACHE_DRIVER: dynamodb
     DYNAMODB_CACHE_TABLE: bref-dev
+    DYNAMODB_ENDPOINT: https://dynamodb.${self:provider.region}.amazonaws.com
     SENTRY_LARAVEL_DSN: ${ssm:/bref-dev/SENTRY_LARAVEL_DSN}
     MAIL_MAILER: ${ssm:/bref-dev/MAIL_MAILER}
     MAILGUN_DOMAIN: ${ssm:/bref-dev/MAILGUN_DOMAIN}
