@@ -62,7 +62,7 @@ provider:
       Resource:
         - Fn::GetAtt: [ Cache, Arn ]  # the dynamo db
         - Fn::Join: [ '', [ Fn::GetAtt: [ Cache, Arn ], '/*' ] ]
-        
+
     # Allows our code to interact with SQS
     - Effect: Allow
       Action: [ sqs:SendMessage, sqs:DeleteMessage ]
