@@ -102,7 +102,7 @@ functions:
   worker:
     handler: worker.php
     layers:
-      - ${bref:layer.php-73}
+      - ${bref:layer.php-74}
     events:
       # Declares that our worker is triggered by jobs in SQS
       - sqs:
