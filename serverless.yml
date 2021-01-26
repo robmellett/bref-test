@@ -135,15 +135,15 @@ resources:
               Action: 's3:GetObject' # to read
               Resource: !Join [ '/', [ !GetAtt Storage.Arn, '*' ] ] # things in the bucket
 
-    cacheTable:
+    Cache:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:provider.environment.DYNAMODB_CACHE_TABLE}
         AttributeDefinitions:
-          - AttributeName: cache
+          - AttributeName: key
             AttributeType: S
         KeySchema:
-          - AttributeName: cache
+          - AttributeName: key
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

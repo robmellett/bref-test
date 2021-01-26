@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('cache', function () {
+
     $cached = Cache::remember('cache-test', 10, function () {
         return Carbon::now();
     });
