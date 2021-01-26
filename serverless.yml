@@ -83,13 +83,6 @@ functions:
       - ${bref:layer.php-74-fpm}
     events:
       - httpApi: '*'
-    vpc:
-      securityGroupIds:
-        - sg-03d964839c61e634c
-      subnetIds:
-        - subnet-0b68131a82dae1acf
-        - subnet-07a148de15a9f7aa2
-        - subnet-0ff0282386c836949
 
   # This function lets us run artisan commands in Lambda
   artisan:
@@ -98,13 +91,6 @@ functions:
     layers:
       - ${bref:layer.php-74} # PHP
       - ${bref:layer.console} # The "console" layer
-    vpc:
-      securityGroupIds:
-        - sg-03d964839c61e634c
-      subnetIds:
-        - subnet-0b68131a82dae1acf
-        - subnet-07a148de15a9f7aa2
-        - subnet-0ff0282386c836949
 
   # This function lets us run the SQS Queue
   worker:
@@ -119,13 +105,6 @@ functions:
           # arn: 'arn:aws:sqs:us-east-1:1234567890:my_sqs_queue'
           # Only 1 item at a time to simplify error handling
           batchSize: 1
-    vpc:
-      securityGroupIds:
-        - sg-03d964839c61e634c
-      subnetIds:
-        - subnet-0b68131a82dae1acf
-        - subnet-07a148de15a9f7aa2
-        - subnet-0ff0282386c836949
 
   # This is the function that lets us the the Schedule
   schedule:
@@ -137,13 +116,6 @@ functions:
       - schedule:
           rate: rate(1 minute)
           input: '"schedule:run"'
-    vpc:
-      securityGroupIds:
-        - sg-03d964839c61e634c
-      subnetIds:
-        - subnet-0b68131a82dae1acf
-        - subnet-07a148de15a9f7aa2
-        - subnet-0ff0282386c836949
 
 resources:
   Resources:
