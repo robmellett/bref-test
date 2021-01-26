@@ -28,7 +28,6 @@ View the `/cache` route, and you should see the current server time.  Refresh a 
 ## Adding new env variables
 `aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/my-parameter' --type String --value 'mysecretvalue'`
 
-
 ## Configuring Assets
 `aws ssm put-parameter --region ap-southeast-2 --name '/bref-dev/MIX_ASSET_URL' --type String --value '"https://<bucket-name>.s3.amazonaws.com'"`
 
