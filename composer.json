@@ -20,7 +20,7 @@
         "sentry/sentry-laravel": "^2.3"
     },
     "require-dev": {
-        "facade/ignition": "2.5.8",
+        "facade/ignition": "2.5.9",
         "fakerphp/faker": "1.13.0",
         "laravel/sail": "1.2.0",
         "mockery/mockery": "1.4.2",
