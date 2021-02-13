@@ -21,6 +21,9 @@ npm install serverless-domain-manager --save-dev
 `sls create_domain`
 
 
+## Testing the CLI
+`bref cli bref-dev-artisan -- inspire`
+
 ## Testing the SQS Queue
 Test the queue with the following command:
 
