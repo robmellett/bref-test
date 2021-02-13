@@ -7,19 +7,32 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About
+# About
 A test project to see how Bref.sh works with Laravel.
 
-### Testing the SQS Queue
+Install the following packages:
+
+```shell
+composer require bref/bref bref/laravel-bridge
+npm install serverless-domain-manager --save-dev
+```
+
+## Create the Serverless Domain
+`sls create_domain`
+
+
+## Testing the SQS Queue
 Test the queue with the following command:
 
 Set the env variable:
+
 `MAIL_TO_ADDRESS="your-test@email.com"`
 
 Dispatch the test job with the following command.  If all is well, you will receive an email.
+
 `AWS_DEFAULT_REGION=ap-southeast-2 bref cli bref-dev-artisan -- test:queue`
 
-### Testing the database
+## Testing the database
 If you are using Postgres, make sure to copy the `php/conf.d/php.ini` file.
 
 ## Testing the Cache Driver
